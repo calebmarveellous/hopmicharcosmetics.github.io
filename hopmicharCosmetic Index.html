@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hopmichar — Skincare &amp; Perfumes | Shop Online</title>
+<style>
+  :root{
+    --orange:#C2410C; --orange-deep:#9A3412; --orange-bright:#EA580C;
+    --orange-50:#FFF7ED; --orange-100:#FFEDD5; --orange-200:#FED7AA;
+    --ink:#1C1917; --muted:#78716C; --white:#fff;
+    --line:#EFE3D8; --green:#15803D; --green-bg:#ECFDF3;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 10px 30px rgba(154,52,18,0.10);
+    --radius:16px;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scroll-padding-top:104px; }
+  body{ font-family:var(--sans); color:var(--ink); background:var(--white); line-height:1.55; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  img,svg{ display:block; }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 20px; }
+  h1,h2,h3,.serif{ font-family:var(--serif); font-weight:700; }
+  .price{ font-variant-numeric:tabular-nums; }
+
+  .announce{ background:var(--orange-deep); color:#fff; font-size:12.5px; letter-spacing:.3px; text-align:center; padding:8px 12px; }
+  .announce b{ color:var(--orange-200); }
+
+  header{ position:sticky; top:0; z-index:40; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; gap:22px; height:64px; }
+  .brand{ display:flex; flex-direction:column; line-height:1; }
+  .brand .n{ font-family:var(--serif); font-size:22px; letter-spacing:.5px; color:var(--orange); }
+  .brand .t{ font-size:8.5px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-top:3px; }
+  .nav-links{ display:flex; gap:22px; margin-left:8px; }
+  .nav-links a{ font-size:14px; color:var(--ink); font-weight:500; transition:color .2s; }
+  .nav-links a:hover{ color:var(--orange); }
+  .nav-right{ margin-left:auto; display:flex; align-items:center; gap:12px; }
+  .cart-btn{ position:relative; display:flex; align-items:center; gap:8px; background:var(--orange); color:#fff; font-weight:600; font-size:14px; padding:10px 16px; border-radius:40px; border:none; cursor:pointer; transition:background .2s, transform .15s; }
+  .cart-btn:hover{ background:var(--orange-bright); transform:translateY(-1px); }
+  .cart-btn svg{ width:18px; height:18px; fill:#fff; }
+  .cart-count{ position:absolute; top:-6px; right:-6px; background:var(--ink); color:#fff; font-size:11px; min-width:19px; height:19px; border-radius:10px; display:flex; align-items:center; justify-content:center; padding:0 5px; }
+
+  .hero{ background:linear-gradient(135deg,var(--orange) 0%, var(--orange-deep) 100%); color:#fff; position:relative; overflow:hidden; }
+  .hero::after{ content:""; position:absolute; right:-120px; top:-120px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%); }
+  .hero-in{ display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding:56px 0; position:relative; z-index:1; }
+  .hero .eyebrow{ font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--orange-200); font-weight:700; }
+  .hero h1{ font-size:clamp(32px,5vw,54px); line-height:1.05; margin:14px 0 0; }
+  .hero h1 em{ font-style:normal; color:var(--orange-200); }
+  .hero p{ font-size:16px; color:#ffe9db; margin-top:16px; max-width:520px; }
+  .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:26px; }
+  .btn{ display:inline-flex; align-items:center; gap:9px; font-weight:700; font-size:15px; padding:14px 24px; border-radius:44px; cursor:pointer; border:none; transition:transform .15s, box-shadow .15s, background .2s; }
+  .btn-white{ background:#fff; color:var(--orange-deep); }
+  .btn-white:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.18); }
+  .btn-outline{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.6); }
+  .btn-outline:hover{ border-color:#fff; }
+  .hero-card{ background:#fff; color:var(--ink); border-radius:20px; padding:22px; box-shadow:0 20px 50px rgba(0,0,0,.25); }
+  .hero-card .tag{ display:inline-block; background:var(--green-bg); color:var(--green); font-size:12px; font-weight:700; padding:5px 12px; border-radius:30px; }
+  .hero-card h3{ font-size:19px; margin:12px 0 6px; }
+  .hero-card ul{ list-style:none; margin-top:10px; }
+  .hero-card li{ font-size:13.5px; color:var(--muted); padding:6px 0 6px 24px; position:relative; }
+  .hero-card li::before{ content:"✓"; position:absolute; left:0; color:var(--orange); font-weight:800; }
+
+  .valuestrip{ background:var(--orange-50); border-bottom:1px solid var(--line); }
+  .vs-in{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; padding:18px 0; }
+  .vs{ display:flex; align-items:center; gap:11px; font-size:13px; color:var(--ink); }
+  .vs svg{ width:26px; height:26px; fill:var(--orange); flex:none; }
+  .vs b{ display:block; font-size:13.5px; } .vs span{ color:var(--muted); font-size:12px; }
+
+  section{ padding:52px 0; }
+  .sec-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:26px; }
+  .sec-head .eyebrow{ font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--orange); font-weight:700; }
+  .sec-head h2{ font-size:clamp(26px,3.6vw,38px); margin-top:8px; line-height:1.1; }
+  .sec-head p{ color:var(--muted); font-size:14.5px; margin-top:6px; max-width:560px; }
+  .range-note{ background:var(--orange-100); color:var(--orange-deep); font-size:13px; font-weight:600; padding:6px 14px; border-radius:30px; white-space:nowrap; }
+
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:22px; }
+  .pcard{ border:1px solid var(--line); border-radius:var(--radius); background:#fff; overflow:hidden; display:flex; flex-direction:column; transition:transform .2s, box-shadow .2s, border-color .2s; }
+  .pcard:hover{ transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--orange-200); }
+  .pmedia{ position:relative; aspect-ratio:1/1; overflow:hidden; background:#FFF3E9; }
+  .pmedia .art{ position:absolute; inset:0; width:100%; height:100%; transition:transform .5s ease; }
+  .pmedia .pimg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .5s ease; z-index:1; }
+  .pcard:hover .art, .pcard:hover .pimg{ transform:scale(1.06); }
+  .pmedia .disc, .pmedia .fave{ z-index:3; }
+  .pmedia .disc{ position:absolute; top:12px; left:12px; background:var(--orange); color:#fff; font-size:12px; font-weight:800; padding:7px 10px; border-radius:10px; transform:rotate(-6deg); box-shadow:0 4px 10px rgba(194,65,12,.3); letter-spacing:.3px; }
+  .pmedia .fave{ position:absolute; top:12px; right:12px; background:#fff; color:var(--orange-deep); font-size:10.5px; font-weight:800; letter-spacing:.5px; padding:5px 9px; border-radius:20px; border:1px solid var(--line); text-transform:uppercase; }
+  .pbody{ padding:15px 16px 18px; display:flex; flex-direction:column; flex:1; }
+  .pbrand{ font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); font-weight:700; }
+  .pname{ font-family:var(--serif); font-size:17px; margin:5px 0 0; line-height:1.25; }
+  .puses-btn{ margin-top:9px; background:none; border:none; color:var(--muted); font-size:12.5px; cursor:pointer; text-align:left; padding:0; text-decoration:underline dotted; }
+  .puses-btn:hover{ color:var(--orange); }
+  .pprice{ display:flex; align-items:baseline; gap:9px; margin-top:12px; flex-wrap:wrap; }
+  .pprice .now{ font-family:var(--serif); font-size:21px; font-weight:700; color:var(--orange-deep); }
+  .pprice .was{ font-size:14px; color:var(--muted); text-decoration:line-through; text-decoration-color:var(--orange-bright); }
+  .psave{ font-size:11.5px; color:var(--green); font-weight:700; margin-top:2px; }
+  .add-btn{ margin-top:14px; background:var(--ink); color:#fff; border:none; font-weight:700; font-size:14px; padding:12px; border-radius:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:background .2s; }
+  .add-btn:hover{ background:var(--orange); }
+  .add-btn svg{ width:16px; height:16px; fill:#fff; }
+
+  .art{ width:100%; height:100%; }
+
+  .best{ background:var(--orange-50); }
+  .best-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px 30px; }
+  .best-row{ display:flex; align-items:center; gap:14px; padding:12px 14px; background:#fff; border:1px solid var(--line); border-radius:12px; }
+  .best-rank{ font-family:var(--serif); font-size:20px; font-weight:700; color:var(--orange); width:34px; text-align:center; flex:none; }
+  .best-row.top .best-rank{ color:#fff; background:var(--orange); border-radius:9px; padding:4px 0; }
+  .best-info{ flex:1; min-width:0; }
+  .best-info .bn{ font-weight:600; font-size:14.5px; }
+  .best-info .bnote{ font-size:12px; color:var(--muted); }
+  .best-price{ font-family:var(--serif); font-weight:700; color:var(--orange-deep); font-size:15px; white-space:nowrap; }
+
+  .band{ background:var(--ink); color:#fff; border-radius:22px; padding:36px; display:grid; grid-template-columns:1.2fr 1fr; gap:28px; align-items:center; }
+  .band h2{ font-size:clamp(24px,3vw,32px); }
+  .band p{ color:#d6d3d1; margin-top:12px; font-size:15px; }
+  .band .pills{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .band .pill{ background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:9px 14px; border-radius:30px; font-size:13px; }
+  .band .cta{ text-align:center; background:var(--orange); border-radius:18px; padding:26px; }
+  .band .cta .big{ font-family:var(--serif); font-size:26px; }
+  .band .cta .sub{ font-size:13px; color:#ffe9db; margin:6px 0 16px; }
+
+  footer{ border-top:1px solid var(--line); padding:44px 0 30px; background:#fff; }
+  .foot{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:28px; }
+  .foot .n{ font-family:var(--serif); font-size:22px; color:var(--orange); }
+  .foot p{ color:var(--muted); font-size:13.5px; margin-top:10px; max-width:320px; }
+  .foot h4{ font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--ink); margin-bottom:12px; }
+  .foot a.fl{ display:block; color:var(--muted); font-size:13.5px; padding:5px 0; }
+  .foot a.fl:hover{ color:var(--orange); }
+  .socials{ display:flex; gap:10px; margin-top:14px; }
+  .socials a{ width:38px; height:38px; border-radius:10px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; transition:background .2s, border-color .2s; }
+  .socials a:hover{ background:var(--orange-50); border-color:var(--orange-200); }
+  .socials svg{ width:19px; height:19px; fill:var(--ink); }
+  .copy{ text-align:center; color:var(--muted); font-size:12px; margin-top:30px; padding-top:20px; border-top:1px solid var(--line); }
+
+  .overlay{ position:fixed; inset:0; background:rgba(28,25,23,.5); opacity:0; pointer-events:none; transition:opacity .3s; z-index:60; }
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .drawer{ position:fixed; top:0; right:0; height:100%; width:400px; max-width:92vw; background:#fff; z-index:70; transform:translateX(100%); transition:transform .32s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column; box-shadow:-10px 0 40px rgba(0,0,0,.2); }
+  .drawer.show{ transform:none; }
+  .dhead{ display:flex; align-items:center; justify-content:space-between; padding:20px; border-bottom:1px solid var(--line); }
+  .dhead h3{ font-size:19px; } .dhead .x{ background:none; border:none; font-size:26px; cursor:pointer; color:var(--muted); line-height:1; }
+  .gift-meter{ padding:14px 20px; background:var(--orange-50); border-bottom:1px solid var(--line); font-size:12.5px; }
+  .gift-meter .bar{ height:8px; border-radius:6px; background:var(--orange-100); margin-top:8px; overflow:hidden; }
+  .gift-meter .fill{ height:100%; background:linear-gradient(90deg,var(--orange),var(--orange-bright)); width:0; transition:width .4s; }
+  .gift-meter b{ color:var(--orange-deep); }
+  .ditems{ flex:1; overflow-y:auto; padding:8px 20px; }
+  .citem{ display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--line); }
+  .citem .ca{ width:60px; height:60px; border-radius:10px; overflow:hidden; flex:none; border:1px solid var(--line); position:relative; }
+  .citem .ci{ flex:1; min-width:0; }
+  .citem .cn{ font-size:13.5px; font-weight:600; line-height:1.3; }
+  .citem .cp{ font-size:13px; color:var(--orange-deep); font-weight:700; margin-top:3px; }
+  .qty{ display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:8px; margin-top:8px; }
+  .qty button{ width:26px; height:26px; border:none; background:none; cursor:pointer; font-size:16px; color:var(--ink); }
+  .qty span{ min-width:26px; text-align:center; font-size:13px; }
+  .citem .rm{ background:none; border:none; color:var(--muted); font-size:11.5px; cursor:pointer; margin-top:6px; text-decoration:underline; }
+  .empty{ text-align:center; color:var(--muted); padding:50px 20px; font-size:14px; }
+  .dfoot{ border-top:1px solid var(--line); padding:18px 20px; }
+  .drow{ display:flex; justify-content:space-between; font-size:13.5px; color:var(--muted); padding:3px 0; }
+  .drow.total{ font-size:18px; color:var(--ink); font-weight:700; font-family:var(--serif); padding-top:8px; }
+  .drow.total .price{ color:var(--orange-deep); }
+  .free-tag{ color:var(--green); font-weight:700; }
+  .checkout-btn{ width:100%; margin-top:14px; background:var(--orange); color:#fff; border:none; font-weight:700; font-size:16px; padding:15px; border-radius:12px; cursor:pointer; transition:background .2s; }
+  .checkout-btn:hover{ background:var(--orange-bright); }
+
+  .modal{ position:fixed; inset:0; z-index:80; display:none; align-items:center; justify-content:center; padding:20px; }
+  .modal.show{ display:flex; }
+  .modal-bd{ position:absolute; inset:0; background:rgba(28,25,23,.55); }
+  .modal-card{ position:relative; background:#fff; border-radius:20px; width:100%; max-width:520px; max-height:90vh; overflow-y:auto; box-shadow:0 30px 70px rgba(0,0,0,.3); }
+  .mc-head{ position:sticky; top:0; background:#fff; display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--line); }
+  .mc-head h3{ font-size:20px; } .mc-head .x{ background:none; border:none; font-size:26px; cursor:pointer; color:var(--muted); }
+  .mc-body{ padding:22px 24px; }
+  .uses-list{ list-style:none; }
+  .uses-list li{ display:flex; gap:12px; align-items:flex-start; padding:11px 0; border-bottom:1px solid var(--line); font-size:14.5px; }
+  .uses-list li .u-n{ width:26px; height:26px; border-radius:50%; background:var(--orange-50); color:var(--orange); font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; flex:none; }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:13px; font-weight:600; margin-bottom:6px; }
+  .field input, .field textarea, .field select{ width:100%; border:1px solid var(--line); border-radius:10px; padding:12px 13px; font-size:14px; font-family:inherit; background:#fff; }
+  .field input:focus,.field textarea:focus,.field select:focus{ outline:none; border-color:var(--orange); }
+  .radio-row{ display:flex; gap:10px; }
+  .radio-row label{ flex:1; border:1px solid var(--line); border-radius:10px; padding:12px; font-size:13.5px; cursor:pointer; display:flex; gap:8px; align-items:center; }
+  .radio-row label.active{ border-color:var(--orange); background:var(--orange-50); }
+  .bump{ border:1px dashed var(--orange-200); background:var(--orange-50); border-radius:12px; padding:13px; display:flex; gap:11px; align-items:center; font-size:13.5px; margin:6px 0 14px; }
+  .bump input{ width:18px; height:18px; accent-color:var(--orange); }
+  .osummary{ background:var(--orange-50); border-radius:12px; padding:14px 16px; margin-bottom:16px; }
+  .osummary .r{ display:flex; justify-content:space-between; font-size:13.5px; padding:3px 0; color:var(--muted); }
+  .osummary .r.tot{ font-weight:700; color:var(--ink); font-size:16px; border-top:1px solid var(--line); margin-top:6px; padding-top:8px; }
+  .pay-box{ border:2px solid var(--orange); border-radius:14px; padding:18px; background:var(--orange-50); }
+  .pay-box .pl{ font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); font-weight:700; }
+  .pay-line{ display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--orange-100); }
+  .pay-line:last-child{ border:none; }
+  .pay-line .k{ font-size:13px; color:var(--muted); }
+  .pay-line .v{ font-weight:700; font-size:15px; }
+  .pay-line .v.big{ font-family:var(--serif); font-size:22px; color:var(--orange-deep); }
+  .copy-btn{ background:var(--orange); color:#fff; border:none; font-size:11.5px; font-weight:700; padding:6px 11px; border-radius:8px; cursor:pointer; margin-left:8px; }
+  .note{ font-size:12.5px; color:var(--muted); margin-top:12px; line-height:1.5; }
+  .mc-foot{ padding:18px 24px 24px; }
+  .wa-confirm{ width:100%; background:#25D366; color:#fff; border:none; font-weight:700; font-size:16px; padding:15px; border-radius:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .wa-confirm svg{ width:20px; height:20px; fill:#fff; }
+  .backlink{ background:none; border:none; color:var(--muted); font-size:13px; cursor:pointer; margin-top:12px; width:100%; }
+  .success{ text-align:center; padding:14px 0; }
+  .success .ring{ width:70px; height:70px; border-radius:50%; background:var(--green-bg); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; }
+  .success .ring svg{ width:36px; height:36px; fill:var(--green); }
+
+  .toast{ position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(120px); background:var(--ink); color:#fff; padding:13px 20px; border-radius:40px; font-size:14px; font-weight:600; z-index:100; transition:transform .35s; box-shadow:0 10px 30px rgba(0,0,0,.25); display:flex; align-items:center; gap:9px; }
+  .toast.show{ transform:translateX(-50%) translateY(0); }
+  .toast svg{ width:17px; height:17px; fill:#7ee2a8; }
+
+  @media(max-width:900px){
+    .hero-in{ grid-template-columns:1fr; gap:26px; }
+    .vs-in{ grid-template-columns:1fr 1fr; }
+    .best-grid{ grid-template-columns:1fr; }
+    .band{ grid-template-columns:1fr; }
+    .foot{ grid-template-columns:1fr 1fr; }
+  }
+  @media(max-width:640px){
+    .nav-links{ display:none; }
+    .foot{ grid-template-columns:1fr; }
+    .vs-in{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">🚚 <b>FREE delivery</b> over ₦50,000 &nbsp;•&nbsp; 🎁 <b>FREE gift</b> over ₦100,000 &nbsp;•&nbsp; 💳 Pay easily by bank transfer</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand"><span class="n">Hopmichar</span><span class="t">Skincare &amp; Fragrance</span></a>
+    <nav class="nav-links">
+      <a href="#skincare">Skincare</a>
+      <a href="#perfumes">Perfumes</a>
+      <a href="#bestsellers">Top 20 Best-Sellers</a>
+      <a href="#promise">Our Promise</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="openCart()">
+        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0020 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero" style="padding:0;">
+  <div class="wrap hero-in">
+    <div>
+      <div class="eyebrow">Authentic Beauty • Nationwide Delivery</div>
+      <h1>Glow-up skincare &amp;<em> luxury perfumes</em>, priced to move.</h1>
+      <p>From Olay, Nivea &amp; Vaseline to Lattafa and rich oud — shop genuine skincare and fragrance with real discounts, free gifts, and fast delivery across Nigeria. Perfumes from just ₦2,000 up to ₦600,000.</p>
+      <div class="hero-cta">
+        <a href="#skincare" class="btn btn-white">Shop Skincare</a>
+        <a href="#perfumes" class="btn btn-outline">Shop Perfumes</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <span class="tag">This week's deal</span>
+      <h3>Up to 37% OFF + a free gift</h3>
+      <ul>
+        <li>Slashed before/after prices on every item</li>
+        <li>Free gift automatically added over ₦100,000</li>
+        <li>Free delivery over ₦50,000</li>
+        <li>Simple, safe bank-transfer checkout</li>
+      </ul>
+      <a href="#bestsellers" class="btn btn-white" style="margin-top:16px;width:100%;justify-content:center;">See Top 20 Best-Sellers</a>
+    </div>
+  </div>
+</section>
+
+<div class="valuestrip">
+  <div class="wrap vs-in">
+    <div class="vs"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 15l-4-4 1.41-1.41L11 13.17l5.59-5.59L18 9l-7 7z"/></svg><div><b>100% Authentic</b><span>Genuine products only</span></div></div>
+    <div class="vs"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2a3 3 0 006 0h6a3 3 0 006 0h2v-5l-3-4zM6 18.5A1.5 1.5 0 114.5 17 1.5 1.5 0 016 18.5zm12 0A1.5 1.5 0 1116.5 17 1.5 1.5 0 0118 18.5zM17 12V9.5h2.5L21 12z"/></svg><div><b>Fast Delivery</b><span>Free over ₦50,000</span></div></div>
+    <div class="vs"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 00-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-9 13H4v-6h7v6zm0-9H4V8h7v2zm9 9h-7v-6h7v6zm0-9h-7V8h7v2z"/></svg><div><b>Free Gifts</b><span>Over ₦100,000</span></div></div>
+    <div class="vs"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg><div><b>Safe Payment</b><span>Bank transfer</span></div></div>
+  </div>
+</div>
+
+<section id="skincare">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Skincare</div>
+        <h2>Skincare that actually shows results</h2>
+        <p>Lotions, brightening creams, serum-burst sets and body mist — everything for radiant, even-toned skin.</p>
+      </div>
+    </div>
+    <div class="grid" id="skincareGrid"></div>
+  </div>
+</section>
+
+<section id="perfumes" style="background:var(--orange-50);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Perfumes &amp; Fragrance</div>
+        <h2>From everyday sprays to rich oud</h2>
+        <p>Lattafa, oil perfumes, body mists and luxury niche bottles — a scent for every budget and occasion.</p>
+      </div>
+      <span class="range-note">Prices ₦2,000 – ₦600,000</span>
+    </div>
+    <div class="grid" id="perfumeGrid"></div>
+  </div>
+</section>
+
+<section id="bestsellers" class="best">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Ranked by demand</div>
+        <h2>Top 20 Best-Sellers</h2>
+        <p>The products our customers reach for most — proven favourites that move fastest. Tap Cart on any product above to grab yours.</p>
+      </div>
+    </div>
+    <div class="best-grid" id="bestList"></div>
+  </div>
+</section>
+
+<section id="promise">
+  <div class="wrap">
+    <div class="band">
+      <div>
+        <h2>Shop with total confidence</h2>
+        <p>We keep it simple: real products, honest discounts, and a person on the other end of every order. If anything isn't right, message us and we'll make it right.</p>
+        <div class="pills">
+          <span class="pill">✓ 100% authentic products</span>
+          <span class="pill">✓ Pay on secure transfer</span>
+          <span class="pill">✓ Fast nationwide delivery</span>
+          <span class="pill">✓ Free gift on big orders</span>
+          <span class="pill">✓ Real human support</span>
+        </div>
+      </div>
+      <div class="cta">
+        <div class="big">Not sure what to pick?</div>
+        <div class="sub">Chat with us — we'll help you choose the perfect product or scent.</div>
+        <a class="btn btn-white" style="width:100%;justify-content:center;" href="https://wa.me/2347039140531?text=Hello%20Hopmichar%2C%20I%20need%20help%20choosing%20a%20product." target="_blank" rel="noopener">Message us on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="n">Hopmichar</div>
+        <p>Genuine skincare and luxury perfumes delivered across Nigeria. Glow more, spend less — with real discounts and free gifts on every big order.</p>
+        <div class="socials">
+          <a href="https://www.tiktok.com/@hopmichar?_r=1&_t=ZN-97wLwd6HoDn" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0115.54 3h-3.09v12.4a2.59 2.59 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.34-1.48z"/></svg></a>
+          <a href="https://www.facebook.com/share/1Arai1BSLW/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+          <a href="https://wa.me/2347039140531" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 012.89 6.99c0 5.45-4.44 9.89-9.88 9.89M20.52 3.45A11.8 11.8 0 0012.05 0C5.46 0 .1 5.36.1 11.94c0 2.1.55 4.14 1.6 5.95L0 24l6.34-1.65a11.9 11.9 0 005.71 1.45h.01c6.58 0 11.94-5.36 11.94-11.94a11.86 11.86 0 00-3.48-8.41"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a class="fl" href="#skincare">Skincare</a>
+        <a class="fl" href="#perfumes">Perfumes</a>
+        <a class="fl" href="#bestsellers">Top 20 Best-Sellers</a>
+        <a class="fl" href="#top">This week's deals</a>
+      </div>
+      <div>
+        <h4>Order &amp; Support</h4>
+        <a class="fl" href="https://wa.me/2347039140531" target="_blank" rel="noopener">WhatsApp: +234 703 914 0531</a>
+        <a class="fl" href="#promise">Our promise</a>
+        <a class="fl" onclick="openCart()" style="cursor:pointer">View cart</a>
+        <p style="font-size:12.5px;margin-top:8px;">Pay by transfer to <b>07039140531</b> at checkout.</p>
+      </div>
+    </div>
+    <div class="copy">© <span id="yr"></span> Hopmichar. All rights reserved. Prices in Nigerian Naira (₦). Product images are placeholders — add your real photos.</div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div class="dhead"><h3>Your Cart</h3><button class="x" onclick="closeAll()">×</button></div>
+  <div class="gift-meter" id="giftMeter"></div>
+  <div class="ditems" id="cartItems"></div>
+  <div class="dfoot" id="cartFoot"></div>
+</aside>
+
+<div class="modal" id="usesModal">
+  <div class="modal-bd" onclick="closeModal('usesModal')"></div>
+  <div class="modal-card">
+    <div class="mc-head"><h3 id="usesTitle">Top 5 Uses</h3><button class="x" onclick="closeModal('usesModal')">×</button></div>
+    <div class="mc-body"><ul class="uses-list" id="usesList"></ul></div>
+    <div class="mc-foot"><button class="checkout-btn" id="usesAdd" style="background:var(--orange)">Add to Cart</button></div>
+  </div>
+</div>
+
+<div class="modal" id="checkoutModal">
+  <div class="modal-bd" onclick="closeModal('checkoutModal')"></div>
+  <div class="modal-card">
+    <div class="mc-head"><h3 id="coTitle">Checkout</h3><button class="x" onclick="closeModal('checkoutModal')">×</button></div>
+    <div class="mc-body" id="coBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const NGN = n => '₦' + Number(Math.round(n)).toLocaleString('en-NG');
+
+let _art=0;
+function art(type){
+  _art++; const u=type+_art;
+  const c=({
+    perfume:{bg:['#FFE8CC','#F4B266'],liq:['#F6A429','#B45309'],cap:'#7C2D12',label:'#FFF7ED'},
+    oud:{bg:['#F1D3A9','#D98A3D'],liq:['#B45309','#5C2E0E'],cap:'#3F1D0B',label:'#F5E6D0'},
+    lotion:{bg:['#FFF1E6','#FFD9BE'],liq:['#FFFFFF','#FBE3CD'],cap:'#C2410C',label:'#FFFFFF'},
+    cream:{bg:['#FFEEDC','#FFD3B0'],liq:['#FFFFFF','#FCE5D0'],cap:'#C2410C',label:'#FFFFFF'},
+    serum:{bg:['#FFEAD6','#FAC489'],liq:['#F8B04C','#C2410C'],cap:'#3F1D0B',label:'#FFF7ED'},
+    mist:{bg:['#FFE6D0','#F7B981'],liq:['#FDBA74','#EA580C'],cap:'#7C2D12',label:'#FFF7ED'},
+    spray:{bg:['#FFE1C8','#F4B266'],liq:['#FB923C','#C2410C'],cap:'#3F1D0B',label:'#FFF7ED'},
+    soap:{bg:['#FFEEDC','#FBC888'],liq:['#FFF7ED','#FBBF77'],cap:'#C2410C',label:'#FFFFFF'},
+    set:{bg:['#FFE8CC','#F3A65B'],liq:['#F6A429','#B45309'],cap:'#7C2D12',label:'#FFF7ED'}
+  })[type] || {bg:['#FFF1E6','#FFD9BE'],liq:['#FFFFFF','#FBE3CD'],cap:'#C2410C',label:'#FFFFFF'};
+  const L=`url(#lq${u})`, GL='#fff';
+  const shapes={
+    perfume:`<rect x="84" y="34" width="32" height="26" rx="5" fill="${c.cap}"/><rect x="112" y="40" width="12" height="8" rx="2" fill="${c.cap}"/><rect x="90" y="58" width="20" height="16" fill="${L}"/><rect x="64" y="72" width="72" height="92" rx="12" fill="${L}"/><rect x="74" y="104" width="52" height="40" rx="5" fill="${c.label}" opacity=".9"/><rect x="70" y="80" width="10" height="76" rx="5" fill="${GL}" opacity=".3"/>`,
+    oud:`<rect x="82" y="28" width="36" height="12" rx="3" fill="${c.cap}"/><rect x="86" y="38" width="28" height="22" rx="4" fill="${c.cap}"/><rect x="90" y="58" width="20" height="16" fill="${L}"/><rect x="64" y="72" width="72" height="92" rx="12" fill="${L}"/><rect x="74" y="104" width="52" height="40" rx="5" fill="${c.label}" opacity=".85"/><rect x="70" y="80" width="10" height="76" rx="5" fill="${GL}" opacity=".28"/>`,
+    serum:`<rect x="86" y="44" width="28" height="16" rx="7" fill="${c.cap}"/><rect x="97" y="58" width="6" height="20" fill="${c.cap}" opacity=".7"/><rect x="90" y="76" width="20" height="12" fill="${L}"/><rect x="82" y="86" width="36" height="72" rx="10" fill="${L}"/><rect x="90" y="106" width="20" height="40" rx="4" fill="${c.label}" opacity=".85"/><rect x="86" y="94" width="8" height="58" rx="4" fill="${GL}" opacity=".26"/>`,
+    lotion:`<rect x="86" y="40" width="20" height="12" rx="2" fill="${c.cap}"/><rect x="104" y="44" width="16" height="6" rx="2" fill="${c.cap}"/><rect x="92" y="52" width="8" height="16" fill="${c.cap}"/><rect x="72" y="66" width="56" height="98" rx="16" fill="${L}"/><rect x="80" y="98" width="40" height="50" rx="6" fill="${c.label}" opacity=".92"/><rect x="78" y="76" width="9" height="82" rx="5" fill="${GL}" opacity=".32"/>`,
+    cream:`<rect x="66" y="64" width="68" height="26" rx="10" fill="${c.cap}"/><rect x="72" y="90" width="56" height="58" rx="12" fill="${L}"/><rect x="82" y="106" width="36" height="30" rx="5" fill="${c.label}" opacity=".9"/><rect x="78" y="98" width="8" height="44" rx="4" fill="${GL}" opacity=".3"/>`,
+    mist:`<rect x="86" y="40" width="28" height="20" rx="6" fill="${c.cap}"/><circle cx="100" cy="37" r="3" fill="${c.cap}"/><rect x="80" y="60" width="40" height="104" rx="18" fill="${L}"/><rect x="88" y="98" width="24" height="50" rx="5" fill="${c.label}" opacity=".85"/><rect x="85" y="72" width="8" height="86" rx="4" fill="${GL}" opacity=".28"/>`,
+    spray:`<rect x="84" y="38" width="32" height="14" rx="3" fill="${c.cap}"/><rect x="90" y="52" width="20" height="10" fill="${c.cap}" opacity=".85"/><rect x="80" y="62" width="40" height="102" rx="16" fill="${L}"/><rect x="88" y="100" width="24" height="46" rx="5" fill="${c.label}" opacity=".85"/><rect x="85" y="74" width="8" height="82" rx="4" fill="${GL}" opacity=".28"/>`,
+    soap:`<rect x="60" y="92" width="80" height="48" rx="16" fill="${L}"/><rect x="72" y="104" width="56" height="24" rx="6" fill="${c.label}" opacity=".55"/><rect x="66" y="98" width="10" height="36" rx="5" fill="${GL}" opacity=".3"/>`,
+    set:`<rect x="42" y="96" width="34" height="60" rx="8" fill="${L}"/><rect x="52" y="82" width="14" height="14" fill="${L}"/><rect x="50" y="70" width="18" height="14" rx="3" fill="${c.cap}"/><rect x="84" y="80" width="34" height="76" rx="9" fill="${L}"/><rect x="95" y="66" width="12" height="14" fill="${L}"/><rect x="92" y="52" width="18" height="16" rx="3" fill="${c.cap}"/><rect x="126" y="104" width="30" height="52" rx="7" fill="${L}"/><rect x="136" y="92" width="10" height="12" fill="${L}"/><rect x="133" y="80" width="16" height="14" rx="3" fill="${c.cap}"/>`
+  };
+  const s=shapes[type]||shapes.lotion;
+  return `<svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="bg${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.bg[0]}"/><stop offset="1" stop-color="${c.bg[1]}"/></linearGradient>
+      <linearGradient id="lq${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.liq[0]}"/><stop offset="1" stop-color="${c.liq[1]}"/></linearGradient>
+      <radialGradient id="sp${u}" cx="50%" cy="36%" r="52%"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="200" height="200" fill="url(#bg${u})"/>
+    <ellipse cx="100" cy="70" rx="72" ry="72" fill="url(#sp${u})"/>
+    <ellipse cx="100" cy="170" rx="46" ry="9" fill="#7c2d12" opacity=".15"/>
+    ${s}
+  </svg>`;
+}
+
+/* To show a REAL photo on any product, add an image URL you own/are licensed to use, e.g.:
+   {id:'pf1', ..., image:'https://your-site.com/khamrah.jpg'}
+   If image is present it shows the photo; otherwise the styled illustration is used. */
+const PRODUCTS = [
+  {id:'sk1', cat:'skincare', brand:'Olay', type:'cream', name:'Olay Total Effects 7-in-1 Cream', was:26000, now:18500,
+    uses:['Smooths fine lines & wrinkles','Evens out skin tone','Deep 24-hour hydration','Fades dark spots','Firms & brightens dull skin']},
+  {id:'sk2', cat:'skincare', brand:'Nivea', type:'lotion', name:'Nivea Perfect & Radiant Lotion', was:9500, now:6800,
+    uses:['Brightens dull skin','Fades dark marks','All-day moisture','Smooths rough patches','Evens complexion']},
+  {id:'sk3', cat:'skincare', brand:'Vaseline', type:'lotion', name:'Vaseline Cocoa Radiant Lotion', was:8200, now:5900,
+    uses:['Locks in deep moisture','Restores dry, ashy skin','Radiant cocoa glow','Softens elbows & knees','Daily healthy sheen']},
+  {id:'sk4', cat:'skincare', brand:'Even Tone', type:'cream', name:'Even Tone Brightening Cream', was:17000, now:11900, fave:'For dark spots',
+    uses:['Fades stubborn dark spots','Evens uneven tone','Brightens knuckles & knees','Clears post-acne marks','Smooths skin texture']},
+  {id:'sk5', cat:'skincare', brand:'Serum Burst', type:'serum', name:'Serum Burst Whitening Serum', was:22000, now:15400, fave:'Best-seller',
+    uses:['Intense brightening boost','Fades hyperpigmentation','Hydrates & plumps skin','Fastest visible glow-up','Layer under your lotion']},
+  {id:'sk6', cat:'skincare', brand:'Glow', type:'cream', name:'Fast-Action Brightening Cream', was:14000, now:9900,
+    uses:['Visible glow in days','Targets dark spots','Evens face & body tone','Smooths skin texture','Boosts natural radiance']},
+  {id:'sk7', cat:'skincare', brand:'Hopmichar', type:'mist', name:'Glow Body Mist (Skin-Infused)', was:6500, now:4550,
+    uses:['All-day fresh scent','Skincare-infused hydration','Light, non-sticky feel','Perfect after a shower','Handbag-friendly refresh']},
+  {id:'sk8', cat:'skincare', brand:'Hopmichar', type:'spray', name:'Nourishing Body Spray', was:5500, now:3800,
+    uses:['Long-lasting freshness','Softens & scents skin','Quick morning spritz','Great for layering','Everyday confidence']},
+  {id:'sk9', cat:'skincare', brand:'Glow', type:'soap', name:'Glutathione Brightening Soap', was:6000, now:3900,
+    uses:['Brightens skin all over','Clears body blemishes','Gentle daily cleanse','Fades dark spots','Smooth, even skin']},
+  {id:'sk10', cat:'skincare', brand:'Serum Burst', type:'serum', name:'Vitamin C Serum Burst Set', was:28000, now:19500,
+    uses:['Powerful brightening duo','Fades spots fast','Boosts collagen glow','Hydrates deeply','Salon result at home']},
+
+  {id:'pf1', cat:'perfume', brand:'Lattafa', type:'perfume', name:'Lattafa Khamrah EDP 100ml', was:58000, now:42000, fave:'#1 Signature',
+    uses:['Sweet vanilla-spice signature','10+ hour longevity','Turns heads at events','Perfect cold-weather scent','A luxury gifting favourite']},
+  {id:'pf2', cat:'perfume', brand:'Lattafa', type:'perfume', name:'Lattafa Asad EDP 100ml', was:52000, now:38000,
+    uses:['Bold masculine statement','All-day projection','Office to evening wear','A true compliment magnet','Comes gift-boxed']},
+  {id:'pf3', cat:'perfume', brand:'Lattafa', type:'perfume', name:'Lattafa Yara EDP 100ml', was:46000, now:34000, fave:'Ladies\u2019 pick',
+    uses:['Sweet feminine charm','Long-lasting on skin','Day & night wear','Loved by the ladies','Beautiful gift bottle']},
+  {id:'pf4', cat:'perfume', brand:'Lattafa', type:'perfume', name:'Lattafa Fakhar Gold 100ml', was:45000, now:33000,
+    uses:['Fresh yet classy','Great daily signature','Strong sillage','Unisex appeal','Affordable luxury']},
+  {id:'pf5', cat:'perfume', brand:'Lattafa', type:'perfume', name:'Lattafa Raghba EDP 100ml', was:39000, now:28000,
+    uses:['Warm vanilla-oud blend','Excellent value','Evening standout','Layers beautifully','A crowd favourite']},
+  {id:'pf6', cat:'perfume', brand:'Lattafa', type:'oud', name:'Lattafa Badee Al Oud 100ml', was:55000, now:40000,
+    uses:['Rich oud-rose blend','Powerful projection','Special-occasion scent','Long wear time','Elegant for gifting']},
+  {id:'pf7', cat:'perfume', brand:'Lattafa', type:'perfume', name:'Lattafa Ansaam Gold 100ml', was:62000, now:45000,
+    uses:['Fruity-sweet elegance','All-day longevity','Turn-heads freshness','Unisex luxury','Gift-ready design']},
+  {id:'pf8', cat:'perfume', brand:'Arabian', type:'oud', name:'Arabian Oil Perfume (Attar Roll-on 12ml)', was:5500, now:3500,
+    uses:['Alcohol-free & gentle','Super long-lasting','Pocket-size for travel','Layer with your sprays','Amazing value scent']},
+  {id:'pf9', cat:'perfume', brand:'Hopmichar', type:'spray', name:'Signature Body Spray 250ml', was:4000, now:2500,
+    uses:['Quick everyday freshness','Budget-friendly','Light office scent','Gym-bag essential','Layer to boost longevity']},
+  {id:'pf10', cat:'perfume', brand:'Hopmichar', type:'mist', name:'Designer Twist Body Mist 200ml', was:6000, now:3900,
+    uses:['Designer-inspired scent','Soft all-day trail','Non-sticky finish','Perfect for reapplying','A lovely little gift']},
+  {id:'pf11', cat:'perfume', brand:'Royal', type:'oud', name:'Royal Oud Premium 100ml', was:130000, now:95000,
+    uses:['Deep, luxurious oud','Massive projection','Statement evening scent','Very long-lasting','Prestige gifting']},
+  {id:'pf12', cat:'perfume', brand:'Dehn Al Oud', type:'oud', name:'Pure Oud Concentrate (Dehn Al Oud) 6ml', was:240000, now:180000,
+    uses:['Pure dehn al oud','A few drops last all day','The ultimate luxury','A collector\u2019s fragrance','Ceremonial gifting']},
+  {id:'pf13', cat:'perfume', brand:'Luxury', type:'set', name:'Luxury Fragrance Gift Set (3-piece)', was:340000, now:250000, fave:'Best gift',
+    uses:['Three scents in one box','The perfect premium gift','Great for special occasions','Variety for every mood','Impressive presentation']},
+  {id:'pf14', cat:'perfume', brand:'Niche', type:'perfume', name:'Signature Niche Luxury 100ml', was:600000, now:480000,
+    uses:['Rare niche signature','Unmatched sophistication','Extreme longevity','For the connoisseur','The ultimate flex gift']},
+  {id:'pf15', cat:'perfume', brand:'Hopmichar', type:'spray', name:'Pocket Body Spray 50ml', was:3200, now:2000,
+    uses:['Freshness for just ₦2,000','Handbag essential','Quick spritz anywhere','Everyday value','Layer with oil perfumes']}
+];
+
+const BESTSELLERS = [
+  {n:'Lattafa Khamrah 100ml',p:42000,note:'Our #1 signature — sells out fast'},
+  {n:'Serum Burst Whitening Serum',p:15400,note:'Fastest glow-up, most reordered'},
+  {n:'Lattafa Asad 100ml',p:38000,note:'Men\u2019s favourite compliment magnet'},
+  {n:'Even Tone Brightening Cream',p:11900,note:'Top pick for dark spots'},
+  {n:'Lattafa Yara 100ml',p:34000,note:'Ladies\u2019 best-seller'},
+  {n:'Nivea Perfect & Radiant Lotion',p:6800,note:'Daily glow staple'},
+  {n:'Arabian Oil Attar Roll-on',p:3500,note:'Long-lasting budget hero'},
+  {n:'Vaseline Cocoa Radiant Lotion',p:5900,note:'Ashy-skin rescue'},
+  {n:'Lattafa Fakhar Gold 100ml',p:33000,note:'Classy daily signature'},
+  {n:'Glow Body Mist',p:4550,note:'Grab-and-go freshness'},
+  {n:'Lattafa Raghba 100ml',p:28000,note:'Best value warmth'},
+  {n:'Vitamin C Serum Burst Set',p:19500,note:'Salon glow at home'},
+  {n:'Lattafa Badee Al Oud 100ml',p:40000,note:'Oud lovers\u2019 choice'},
+  {n:'Signature Body Spray 250ml',p:2500,note:'Freshness under ₦3k'},
+  {n:'Olay Total Effects 7-in-1',p:18500,note:'Anti-age + brighten in one'},
+  {n:'Lattafa Ansaam Gold 100ml',p:45000,note:'Sweet luxury, gift-ready'},
+  {n:'Glutathione Brightening Soap',p:3900,note:'All-over brightening'},
+  {n:'Royal Oud Premium 100ml',p:95000,note:'Statement evening scent'},
+  {n:'Designer Twist Body Mist',p:3900,note:'Designer vibe, small price'},
+  {n:'Luxury Fragrance Gift Set',p:250000,note:'The ultimate gift flex'}
+];
+
+const FREE_DELIVERY = 50000, FREE_GIFT = 100000, DELIVERY_FEE = 3500;
+const BUMP = {id:'bump', name:'Travel Body Mist (add-on)', now:2500};
+let cart = {};
+let addBump = false;
+let deliveryMethod = 'delivery';
+const P = id => PRODUCTS.find(x=>x.id===id) || (id===BUMP.id?BUMP:null);
+
+function cardHTML(p){
+  const disc = Math.round((1 - p.now/p.was)*100);
+  return `<div class="pcard">
+    <div class="pmedia">${art(p.type)}${p.image?`<img class="pimg" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''}
+      <span class="disc">-${disc}%</span>
+      ${p.fave?`<span class="fave">${p.fave}</span>`:''}
+    </div>
+    <div class="pbody">
+      <span class="pbrand">${p.brand}</span>
+      <h3 class="pname">${p.name}</h3>
+      <button class="puses-btn" onclick="showUses('${p.id}')">★ See top 5 uses</button>
+      <div class="pprice">
+        <span class="now price">${NGN(p.now)}</span>
+        <span class="was price">${NGN(p.was)}</span>
+      </div>
+      <div class="psave">You save ${NGN(p.was-p.now)}</div>
+      <button class="add-btn" onclick="addToCart('${p.id}')">
+        <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7.42c-.14 0-.25-.11-.25-.25z"/></svg>
+        Add to Cart
+      </button>
+    </div>
+  </div>`;
+}
+document.getElementById('skincareGrid').innerHTML = PRODUCTS.filter(p=>p.cat==='skincare').map(cardHTML).join('');
+document.getElementById('perfumeGrid').innerHTML  = PRODUCTS.filter(p=>p.cat==='perfume').map(cardHTML).join('');
+
+document.getElementById('bestList').innerHTML = BESTSELLERS.map((b,i)=>`
+  <div class="best-row ${i<3?'top':''}">
+    <div class="best-rank">${i+1}</div>
+    <div class="best-info"><div class="bn">${b.n}</div><div class="bnote">${b.note}</div></div>
+    <div class="best-price price">${NGN(b.p)}</div>
+  </div>`).join('');
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+function subtotal(){
+  let s = 0;
+  for(const id in cart){ s += P(id).now * cart[id]; }
+  if(addBump) s += BUMP.now;
+  return s;
+}
+function itemCount(){ let c=0; for(const id in cart) c+=cart[id]; return c; }
+function deliveryCost(){
+  if(deliveryMethod==='pickup') return 0;
+  return subtotal()>=FREE_DELIVERY ? 0 : DELIVERY_FEE;
+}
+function total(){ return subtotal()+deliveryCost(); }
+
+function addToCart(id){ cart[id]=(cart[id]||0)+1; flash(P(id).name+' added'); renderCart(); bump(); }
+function changeQty(id,d){ cart[id]=(cart[id]||0)+d; if(cart[id]<=0) delete cart[id]; renderCart(); }
+function removeItem(id){ delete cart[id]; renderCart(); }
+
+function renderCart(){
+  document.getElementById('cartCount').textContent = itemCount();
+  const items = document.getElementById('cartItems');
+  const ids = Object.keys(cart);
+  if(ids.length===0){
+    items.innerHTML = `<div class="empty">Your cart is empty.<br>Add some glow to it ✨</div>`;
+    document.getElementById('cartFoot').innerHTML = '';
+    document.getElementById('giftMeter').innerHTML = giftMeterHTML();
+    return;
+  }
+  items.innerHTML = ids.map(id=>{
+    const p=P(id);
+    return `<div class="citem">
+      <div class="ca">${p.image?`<img src="${p.image}" alt="" style="width:100%;height:100%;object-fit:cover">`:art(p.type)}</div>
+      <div class="ci">
+        <div class="cn">${p.name}</div>
+        <div class="cp price">${NGN(p.now)}</div>
+        <div class="qty">
+          <button onclick="changeQty('${id}',-1)">−</button><span>${cart[id]}</span><button onclick="changeQty('${id}',1)">+</button>
+        </div>
+        <button class="rm" onclick="removeItem('${id}')">Remove</button>
+      </div>
+      <div class="cp price">${NGN(p.now*cart[id])}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('giftMeter').innerHTML = giftMeterHTML();
+  const dc = deliveryCost();
+  document.getElementById('cartFoot').innerHTML = `
+    <div class="drow"><span>Subtotal</span><span class="price">${NGN(subtotal())}</span></div>
+    <div class="drow"><span>Delivery</span><span>${dc===0?'<span class=\"free-tag\">FREE</span>':NGN(dc)}</span></div>
+    ${subtotal()>=FREE_GIFT?'<div class="drow"><span>🎁 Free gift</span><span class="free-tag">INCLUDED</span></div>':''}
+    <div class="drow total"><span>Total</span><span class="price">${NGN(total())}</span></div>
+    <button class="checkout-btn" onclick="startCheckout()">Checkout • ${NGN(total())}</button>`;
+}
+function giftMeterHTML(){
+  const s=subtotal();
+  if(s>=FREE_GIFT) return `🎁 <b>You unlocked a FREE gift!</b> It'll be added to your order.`;
+  const left=FREE_GIFT-s, pct=Math.min(100,Math.round(s/FREE_GIFT*100));
+  return `🎁 Spend <b>${NGN(left)}</b> more to unlock a <b>free gift</b>.<div class="bar"><div class="fill" style="width:${pct}%"></div></div>`;
+}
+
+let usesCurrent=null;
+function showUses(id){
+  const p=P(id); usesCurrent=id;
+  document.getElementById('usesTitle').textContent='Top 5 Uses — '+p.name;
+  document.getElementById('usesList').innerHTML=p.uses.map((u,i)=>`<li><span class="u-n">${i+1}</span><span>${u}</span></li>`).join('');
+  document.getElementById('usesAdd').textContent='Add to Cart • '+NGN(p.now);
+  openModal('usesModal');
+}
+document.getElementById('usesAdd').onclick=()=>{ if(usesCurrent){ addToCart(usesCurrent); closeModal('usesModal'); openCart(); } };
+
+function startCheckout(){
+  if(Object.keys(cart).length===0){ flash('Your cart is empty'); return; }
+  closeAll(); renderCheckoutForm(); openModal('checkoutModal');
+}
+function renderCheckoutForm(){
+  document.getElementById('coTitle').textContent='Checkout';
+  document.getElementById('coBody').innerHTML=`
+    <div class="field"><label>Full name</label><input id="cName" placeholder="e.g. Amara Obi"></div>
+    <div class="field"><label>Phone (WhatsApp)</label><input id="cPhone" placeholder="e.g. 0803 000 0000" inputmode="tel"></div>
+    <div class="field"><label>Delivery method</label>
+      <div class="radio-row">
+        <label id="optD" class="${deliveryMethod==='delivery'?'active':''}" onclick="setMethod('delivery')"><input type="radio" name="dm" ${deliveryMethod==='delivery'?'checked':''} style="display:none">🚚 Deliver to me</label>
+        <label id="optP" class="${deliveryMethod==='pickup'?'active':''}" onclick="setMethod('pickup')"><input type="radio" name="dm" ${deliveryMethod==='pickup'?'checked':''} style="display:none">🏬 Pickup</label>
+      </div>
+    </div>
+    <div class="field" id="addrField" style="${deliveryMethod==='pickup'?'display:none':''}"><label>Delivery address</label><textarea id="cAddr" rows="2" placeholder="Street, area, city, state"></textarea></div>
+    <label class="bump"><input type="checkbox" id="cBump" ${addBump?'checked':''} onchange="toggleBump()"> <span>➕ Add a <b>Travel Body Mist</b> for just <b>${NGN(BUMP.now)}</b> — perfect for your handbag.</span></label>
+    <div id="coSummary"></div>
+    <button class="checkout-btn" onclick="goToPayment()">Continue to Payment</button>`;
+  renderCoSummary();
+}
+function setMethod(m){ deliveryMethod=m;
+  document.getElementById('optD').classList.toggle('active',m==='delivery');
+  document.getElementById('optP').classList.toggle('active',m==='pickup');
+  document.getElementById('addrField').style.display = m==='pickup'?'none':'';
+  renderCoSummary(); renderCart();
+}
+function toggleBump(){ addBump=document.getElementById('cBump').checked; renderCoSummary(); renderCart(); }
+function renderCoSummary(){
+  const dc=deliveryCost();
+  document.getElementById('coSummary').innerHTML=`<div class="osummary">
+    <div class="r"><span>Items (${itemCount()+(addBump?1:0)})</span><span class="price">${NGN(subtotal())}</span></div>
+    <div class="r"><span>Delivery</span><span>${dc===0?'FREE':NGN(dc)}</span></div>
+    ${subtotal()>=FREE_GIFT?'<div class="r"><span>🎁 Free gift</span><span>Included</span></div>':''}
+    <div class="r tot"><span>Total to pay</span><span class="price">${NGN(total())}</span></div></div>`;
+}
+let lastOrder=null;
+function goToPayment(){
+  const name=(document.getElementById('cName').value||'').trim();
+  const phone=(document.getElementById('cPhone').value||'').trim();
+  const addr=(document.getElementById('cAddr')?document.getElementById('cAddr').value:'').trim();
+  if(!name||!phone){ flash('Please add your name and phone'); return; }
+  if(deliveryMethod==='delivery' && !addr){ flash('Please add a delivery address'); return; }
+  const ref='HMC-'+Date.now().toString().slice(-6);
+  const items=Object.keys(cart).map(id=>({name:P(id).name,qty:cart[id],line:P(id).now*cart[id]}));
+  if(addBump) items.push({name:BUMP.name,qty:1,line:BUMP.now});
+  lastOrder={ref,name,phone,addr,method:deliveryMethod,items,subtotal:subtotal(),delivery:deliveryCost(),total:total(),gift:subtotal()>=FREE_GIFT};
+
+  document.getElementById('coTitle').textContent='Payment — Bank Transfer';
+  document.getElementById('coBody').innerHTML=`
+    <div class="pay-box">
+      <div class="pl">Transfer this exact amount</div>
+      <div class="pay-line"><span class="k">Amount</span><span class="v big price">${NGN(lastOrder.total)}</span></div>
+      <div class="pay-line"><span class="k">Account Number</span><span class="v"><span id="acct">07039140531</span><button class="copy-btn" onclick="copyAcct()">Copy</button></span></div>
+      <div class="pay-line"><span class="k">Account Name</span><span class="v">HOPMICHAR STORES</span></div>
+      <div class="pay-line"><span class="k">Bank</span><span class="v">OPay / Moniepoint / PalmPay</span></div>
+      <div class="pay-line"><span class="k">Order Ref</span><span class="v">${lastOrder.ref}</span></div>
+    </div>
+    <p class="note">This account number is linked to <b>+234 703 914 0531</b>. After you transfer, tap the button below to send your receipt on WhatsApp so we can confirm and dispatch your order right away. Please use your <b>Order Ref</b> as the transfer narration.</p>
+    <div class="mc-foot" style="padding:16px 0 0;">
+      <button class="wa-confirm" onclick="confirmWhatsApp()">
+        <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35"/></svg>
+        I've Paid — Send Receipt on WhatsApp
+      </button>
+      <button class="backlink" onclick="renderCheckoutForm()">← Back to details</button>
+    </div>`;
+}
+function copyAcct(){
+  const t='07039140531';
+  if(navigator.clipboard){ navigator.clipboard.writeText(t).then(()=>flash('Account number copied')).catch(()=>flash('07039140531')); }
+  else flash('07039140531');
+}
+function confirmWhatsApp(){
+  const o=lastOrder; if(!o) return;
+  let msg=`Hello Hopmichar! I've placed an order (Ref: ${o.ref}).\n\n`;
+  o.items.forEach(i=>{ msg+=`• ${i.qty} x ${i.name} — ${NGN(i.line)}\n`; });
+  msg+=`\nSubtotal: ${NGN(o.subtotal)}\nDelivery: ${o.delivery===0?'FREE':NGN(o.delivery)}\n`;
+  if(o.gift) msg+=`Free gift: Included 🎁\n`;
+  msg+=`TOTAL PAID: ${NGN(o.total)}\n\nName: ${o.name}\nPhone: ${o.phone}\n`;
+  msg+=(o.method==='delivery'?`Deliver to: ${o.addr}`:`Pickup order`);
+  msg+=`\n\nI have transferred to 07039140531. Attaching my receipt.`;
+  window.open('https://wa.me/2347039140531?text='+encodeURIComponent(msg),'_blank');
+  showSuccess();
+}
+function showSuccess(){
+  const o=lastOrder;
+  document.getElementById('coTitle').textContent='Order Placed';
+  document.getElementById('coBody').innerHTML=`
+    <div class="success">
+      <div class="ring"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <h3 style="font-size:22px;">Thank you, ${o.name.split(' ')[0]}!</h3>
+      <p style="color:var(--muted);margin-top:8px;">Your order <b>${o.ref}</b> is reserved. Once we confirm your ${NGN(o.total)} transfer on WhatsApp, we'll dispatch it right away.</p>
+      <div class="osummary" style="text-align:left;margin-top:18px;">
+        <div class="r"><span>Order total</span><span class="price">${NGN(o.total)}</span></div>
+        <div class="r"><span>Pay to</span><span>07039140531 (OPay/Moniepoint/PalmPay)</span></div>
+        <div class="r"><span>${o.method==='delivery'?'Delivery':'Pickup'}</span><span>${o.method==='delivery'?'To your address':'In-store'}</span></div>
+      </div>
+    </div>
+    <div class="mc-foot" style="padding:16px 0 0;">
+      <button class="checkout-btn" onclick="resetStore()">Continue Shopping</button>
+    </div>`;
+}
+function resetStore(){ cart={}; addBump=false; lastOrder=null; renderCart(); closeModal('checkoutModal'); flash('Ready for your next order ✨'); }
+
+function openCart(){ document.getElementById('drawer').classList.add('show'); document.getElementById('overlay').classList.add('show'); renderCart(); }
+function closeAll(){ document.getElementById('drawer').classList.remove('show'); document.getElementById('overlay').classList.remove('show'); }
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+function bump(){ const b=document.querySelector('.cart-btn'); b.style.transform='scale(1.08)'; setTimeout(()=>b.style.transform='',150); }
+let toastT;
+function flash(msg){
+  const t=document.getElementById('toast');
+  t.innerHTML=`<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>${msg}`;
+  t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),1900);
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeAll(); closeModal('usesModal'); closeModal('checkoutModal'); } });
+renderCart();
+</script>
+</body>
+</html>
